@@ -1,0 +1,53 @@
+<div class="checkout-page" ng-controller="cartController as cartCtrl">
+
+    <div>
+        <p class="checkout-title">
+            <i class="ion-ios-checkmark red-icon"></i> Few clicks away! Review and place your order.
+        </p>
+    </div>
+
+    <div class="order-details">
+        <div class="checkout-order-details">
+            <div class="invoice-heading">You have {{cartCtrl.cartItems.length}} items in cart.</div>
+            <div ng-repeat="item in cartCtrl.cartItems track by $index" class="invoice-item">
+                <div ng-click="cartCtrl.removeItem($index)"><i class="ion-android-close remove-icon"></i></div>
+                <div><img src="{{item.Src}}" class="invoice-img"></img>
+                </div>
+                <div class="invoice-title">{{item.Title}}</div>
+                <input ng-model="item.Quantity" class="invoice-qty"></input>
+                <div class="invoice-price">{{item.Price*item.Quantity | currency:"$"}} {{cartCtrl.updateCartTotal()}}</div>
+            </div>
+        </div>
+
+        <div class="checkout-payment-details">
+            <div class="invoice-heading">Payment and Shipping</div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-50 col-left-aligned">Product cost:</div>
+                    <div class="col-50 col-right-aligned">{{cartCtrl.cartTotal | currency:"$"}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-50 col-left-aligned">Shipping:</div>
+                    <div class="col-50 col-right-aligned">Free!</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-50 col-left-aligned">Tax:</div>
+                    <div class="col-50 col-right-aligned">{{cartCtrl.tax | currency:"$"}}</div>
+                </div>
+
+                <div class="row total">
+                    <div class="col-50 col-left-aligned">Total:</div>
+                    <div class="col-50 col-right-aligned">{{cartCtrl.taxPrice | currency:"$"}}</div>
+                </div>
+
+                <div class="row">
+                    <a href="#/"><button class="checkout-btn place-order-btn">PLACE YOUR ORDER</button></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

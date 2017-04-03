@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="ngCart">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+    <script src="JS/app.js"></script>
+</head>
+
+<body>
+    <div class="top-bar">
+        
+        <div class="brand">
+            <a href="#/">Brand</a>
+        </div>
+
+        <div class="search-bar">
+            <!-- <input type="text" placeholder="Search.."></input> -->
+            <!-- <button class="btn"><i class="ion-search icons"></i></button> -->
+        </div>
+
+        <div class="right-nav" ng-controller="cartController as cartCtrl">
+
+            <div class="suppressor" ng-show="cartCtrl.showCart"></div>
+            <div class="shopping-cart" ng-click="cartCtrl.toggleCart()">
+
+                <div>
+                    <i class="ion-android-cart icons"></i>
+                </div>
+
+                <div class="cart-count">
+                    {{cartCtrl.cartItems.length}}
+                </div>
+
+            </div>
+
+            <div class="cart" ng-show="cartCtrl.showCart">
+
+                <div ng-repeat="item in cartCtrl.cartItems track by $index" class="cart-items">
+                    <img src={{item.Src}} class="cart-items-picture"></img>
+                    <div>
+                        <span class="cart-items-title">{{item.Title}}</span>
+                        <p>Qty: {{item.Quantity}}</p>
+                    </div>
+                </div>
+
+                <div ng-show="cartCtrl.cartItems.length >= 1" class="checkout-btn-div">
+                    <a href="#checkout">
+                        <button class="checkout-btn" ng-click="cartCtrl.showCart=false">CHECKOUT</button>
+                    </a>
+                </div>
+
+                <div ng-hide="cartCtrl.cartItems.length >= 1" class="center-text-div">
+                    <span>No items in cart</span>
+                </div>
+            </div>
+
+            <div class="user-account-link">
+                <a href="#">Keyur</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div ng-view></div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<div class="lineup">
+    <div class="lineup-header">
+
+        <div class="lineup-stats">
+            <div class="lineup-stats-text">Showing: All items</div>
+        </div>
+        
+        <div class="filter" ng-controller="sortController as sortCtrl">
+            <div class="filter-text">
+                <p></p>
+                <!-- <div class="dropdown">
+                    <div class="dropdown-text">Relevance</div>
+                    <div class="dropdown-icon">
+                        <i class="ion-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="dropdown-items">
+                    <ul>
+                        <li>Price: Low -> high</li>
+                        <li>Price: Low -> high</li>
+                        <li>Customer rating</li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="catalog-container" ng-controller="catalogController as ctlgCtrl">
+        <div class="catalog" ng-repeat="item in ctlgCtrl.inventory track by $index">
+            <div class="catalog-item">
+                <div class="catalog-item-picture">
+                    <img src={{item.Src}}></img>
+                </div>
+                <div class="catalog-item-desc">
+                    <div class="catalog-item-title">
+                        {{item.Title}}
+                        <div class="catalog-item-weight">{{item.Weight}}</div>
+                    </div>
+                    <div class="catalog-item-price">{{item.Price | currency:"$"}}</div>
+                </div>
+
+                <div class="add-to-cart">
+                    <div class="qty-div">
+                        <!-- <span>Qty:</span> -->
+                        <button class="btn qty-btn" ng-click="ctlgCtrl.decrementQuantity($index)">-</button>
+                        <input type="text " class="qty-input " ng-model="item.Quantity "></input>
+                        <button class="btn qty-btn " ng-click="ctlgCtrl.incrementQuantity($index) ">+</button>
+                    </div>
+
+                    <button class="add-to-cart-btn" ng-click="ctlgCtrl.addToCart($index)">BUY</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
